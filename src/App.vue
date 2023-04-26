@@ -7,7 +7,13 @@
   <!-- <vmodelComposition /> -->
   <!-- <computedComposition /> -->
   <!-- <watchComposition /> -->
-  <provideInjectComposition />
+  <!-- <provideInjectComposition /> -->
+  <div>
+    <button @click="show = true">Show ME</button>
+    <componentEmitEvent v-show="show" @close="closeEvent" :name='name' />
+    <h1>App : {{name}}, Age : {{age}}</h1>
+    <h1> {{count}} </h1>
+  </div>
 </template>
 
 <script>
@@ -18,7 +24,8 @@
 // import vmodelComposition from "./components/vmodelComposition.vue"
 // import computedComposition from "./components/computedComposition.vue";
 // import watchComposition from "./components/watchComposition.vue";
-import provideInjectComposition from "./components/provideInjectComposition.vue"
+// import provideInjectComposition from "./components/provideInjectComposition.vue"
+import componentEmitEvent from "./components/componentEmitEvent.vue";
 export default {
   name: "App",
   components: {
@@ -29,7 +36,27 @@ export default {
     // vmodelComposition,
     // computedComposition,
     // watchComposition,
-    provideInjectComposition,
+    // provideInjectComposition,
+    componentEmitEvent,
+  },
+  data() {
+    return {
+      show: false,
+      name: "",
+      age:null,
+      count :0
+    };
+  },
+  methods: {
+    closeEvent(name,age) {
+      this.show = false;
+      this.name = name;
+      this.age = age;
+    },
+    mouse(event){
+      console.log(event)
+      this.count = this.count + 1
+    }
   },
 };
 </script>
